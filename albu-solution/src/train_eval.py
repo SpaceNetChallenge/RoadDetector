@@ -4,7 +4,7 @@ cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
 import os
 
-from pytorch_utils.transforms import augment_flips_color
+from augmentations.transforms import get_flips_colors_augmentation
 
 from dataset.reading_image_provider import ReadingImageProvider
 from dataset.raw_image import RawImageType
@@ -47,13 +47,12 @@ def train_roads():
 
     folds = get_csv_folds('folds4.csv', ds.im_names)
     num_workers = 0 if os.name == 'nt' else 2
-    train(ds, folds, config, num_workers=num_workers, transforms=augment_flips_color, skip_folds=skip_folds)
-
+    for fold, (train_idx, val_idx) in enumerate(folds):
+        if args.fold is not None and int(args.fold) != fold:
+            continue
+        train(ds, fold, train_idx, val_idx, config, num_workers=num_workers, transforms=get_flips_colors_augmentation())
 
 class RawImageTypePad(RawImageType):
-    # def reflect_border(self, image, b=12):
-    #     return cv2.copyMakeBorder(image, b, b, b, b, cv2.BORDER_REPLICATE)
-
     def finalyze(self, data):
         return self.reflect_border(data, 22)
 
@@ -61,13 +60,16 @@ class RawImageTypePad(RawImageType):
 def eval_roads():
     global config
     rows, cols = 1344, 1344
-    config = update_config(config, target_rows=rows, target_cols=cols, img_rows=rows, img_cols=cols)
+    config = update_config(config, target_rows=rows, target_cols=cols)
     ds = ReadingImageProvider(RawImageTypePad, paths, fn_mapping, image_suffix=image_suffix)
 
     folds = [([], list(range(len(ds)))) for i in range(4)]
     num_workers = 0 if os.name == 'nt' else 2
-    keval = FullImageEvaluator(config, ds, folds, test=test, flips=3, num_workers=num_workers, border=22)
-    keval.predict()
+    keval = FullImageEvaluator(config, ds, test=test, flips=3, num_workers=num_workers, border=22)
+    for fold, (t, e) in enumerate(folds):
+        if args.fold is not None and int(args.fold) != fold:
+            continue
+        keval.predict(fold, e)
 
 
 if __name__ == "__main__":

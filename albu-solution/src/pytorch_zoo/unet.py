@@ -22,10 +22,6 @@ class Resnet(EncoderDecoder):
         elif layer == 4:
             return encoder.layer4
 
-    @property
-    def first_layer_params_names(self):
-        return ['encoder.conv1', 'encoder.bn1', 'encoder_stages.0']
-
 
 class Resnet34_upsample(Resnet):
     def __init__(self, num_classes, num_channels=3):

@@ -1,20 +1,7 @@
 import numpy as np
-import cv2
-from sklearn.model_selection import KFold
 from config import Config
-import argparse
-import json
 import pandas as pd
 
-def heatmap(map):
-    map = (map*255).astype(np.uint8)
-    return cv2.applyColorMap(map, cv2.COLORMAP_BONE)
-
-
-def get_folds(data, num):
-    kf = KFold(n_splits=num, shuffle=True, random_state=42)
-    kf.get_n_splits(data)
-    return kf.split(data)
 
 def get_csv_folds(path, d):
     df = pd.read_csv(path, index_col=0)

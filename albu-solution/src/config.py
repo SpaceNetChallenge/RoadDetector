@@ -4,13 +4,11 @@ Config = namedtuple("Config", [
     "dataset_path",
     "iter_size",
     "folder",
-    "img_rows",
-    "img_cols",
     "target_rows",
     "target_cols",
     "num_channels",
     "network",
-    "dice_weight",
+    "loss",
     "optimizer",
     "lr",
     "lr_steps",
@@ -19,11 +17,11 @@ Config = namedtuple("Config", [
     "epoch_size",
     "nb_epoch",
     "predict_batch_size",
-    "dbg",
-    "save_images",
     "test_pad",
-    "train_pad",
-    "results_dir"
+    "results_dir",
+    "num_classes",
+    "warmup",
+    "ignore_target_size"
 ])
 
 

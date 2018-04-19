@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class ImageCropper:
+    """
+    generates random or sequential crops of image
+    """
     def __init__(self, img_rows, img_cols, target_rows, target_cols, pad):
         self.image_rows = img_rows
         self.image_cols = img_cols
@@ -23,27 +26,26 @@ class ImageCropper:
     def crop_image(self, image, x, y):
         return image[y: y+self.target_rows, x: x+self.target_cols,...] if self.use_crop else image
 
-    def sequential_starts(self, axis=0):
-        #dumb thing
-        best_dist = float('inf')
-        best_starts = None
-        big_segment = self.image_cols if axis else self.image_rows
-        small_segment = self.target_cols if axis else self.target_rows
-        opt_val = len(np.arange(0, big_segment, small_segment - self.pad)) - 1
-        for i in range(small_segment - self.pad):
-            r = np.arange(0, big_segment, small_segment - self.pad - i)
-            minval = abs(big_segment - small_segment - r[opt_val])
-            if minval < best_dist:
-                best_dist = minval
-                best_starts = r
-            else:
-                starts = best_starts[:opt_val].tolist() + [big_segment - small_segment]
-                return starts
-
     def sequential_crops(self, img):
         for startx in self.starts_x:
             for starty in self.starts_y:
                 yield self.crop_image(img, startx, starty)
+
+    def sequential_starts(self, axis=0):
+        """
+        splits range uniformly to generate uniform image crops with minimal pad (intersection)
+        """
+        big_segment = self.image_cols if axis else self.image_rows
+        small_segment = self.target_cols if axis else self.target_rows
+        if big_segment == small_segment:
+            return [0]
+        steps = np.ceil((big_segment - self.pad) / (small_segment - self.pad)) # how many small segments in big segment
+        if steps == 1:
+            return [0]
+        new_pad = int(np.floor((small_segment * steps - big_segment) / (steps - 1))) # recalculate pad
+        starts = [i for i in range(0, big_segment - small_segment, small_segment - new_pad)]
+        starts.append(big_segment - small_segment)
+        return starts
 
 #dbg functions
 def starts_to_mpl(starts, t):
@@ -79,6 +81,8 @@ def calc_starts_and_visualize(c, tr, tc):
     data_rows = starts_to_mpl(starts_rows, tr)
     starts_cols = c.sequential_starts(axis=1)
     data_cols = starts_to_mpl(starts_cols, tc)
+    print(starts_rows)
+    print(starts_cols)
 
     f, axarr = plt.subplots(1, 2, sharey=True)
     axarr[0].plot(*data_rows)
@@ -89,6 +93,6 @@ def calc_starts_and_visualize(c, tr, tc):
 
 
 if __name__ == '__main__':
-    opts = 2072, 2072, 1024, 1024, 0
+    opts = 1324, 1324, 768, 768, 0
     c = ImageCropper(*opts)
     calc_starts_and_visualize(c, opts[2], opts[3])

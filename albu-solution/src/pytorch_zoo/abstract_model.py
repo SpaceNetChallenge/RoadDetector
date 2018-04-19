@@ -2,18 +2,14 @@ import math
 import torch
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
-from pytorch_zoo import resnet, inception
+from pytorch_zoo import resnet
 
 
 encoder_params = {
     'resnet34':
         {'filters': [64, 64, 128, 256, 512],
          'init_op': resnet.resnet34,
-         'url': resnet.model_urls['resnet34']},
-    'inceptionv3':
-        {'filters': [64, 192, 288, 768, 2048],
-         'init_op': inception.inception_v3,
-         'url': inception.model_urls['inception_v3_google']},
+         'url': resnet.model_urls['resnet34']}
 }
 
 class ConvBottleneck(nn.Module):
@@ -53,6 +49,7 @@ class AbstractModel(nn.Module):
     def _initialize_weights(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
+                # Kaiming He normal initialization
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                 m.weight.data.normal_(0, math.sqrt(2. / n))
                 if m.bias is not None:
@@ -78,7 +75,7 @@ class EncoderDecoder(AbstractModel):
         if not hasattr(self, 'bottleneck_type'):
             self.bottleneck_type = ConvBottleneck
 
-        self.bottlenecks = nn.ModuleList([self.bottleneck_type(f * 2, f) for f in reversed(self.filters[:-1])]) #todo init from type
+        self.bottlenecks = nn.ModuleList([self.bottleneck_type(f * 2, f) for f in reversed(self.filters[:-1])])
         self.decoder_stages = nn.ModuleList([self.get_decoder(idx) for idx in range(1, len(self.filters))])
 
         self.last_upsample = UnetDecoderBlock(self.filters[0], self.filters[0] // 2)

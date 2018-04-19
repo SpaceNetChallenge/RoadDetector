@@ -1,14 +1,13 @@
 import os
 from scipy.misc import imread
 
-from dataset.abstract_image_type import AbstractImageType, AlphaNotAvailableException
-from pytorch_utils.transforms import CLAHE
-import cv2
-cv2.setNumThreads(0)
-cv2.ocl.setUseOpenCL(False)
+from dataset.abstract_image_type import AbstractImageType
 
 
 class RawImageType(AbstractImageType):
+    """
+    image provider constructs image of type and then you can work with it
+    """
     def __init__(self, paths, fn, fn_mapping, has_alpha):
         super().__init__(paths, fn, fn_mapping, has_alpha)
         self.im = imread(os.path.join(self.paths['images'], self.fn), mode='RGB')

@@ -8,6 +8,9 @@ class AlphaNotAvailableException(Exception):
     pass
 
 class AbstractImageType:
+    """
+    implement read_* methods in concrete image types. see raw_image for example
+    """
     def __init__(self, paths, fn, fn_mapping, has_alpha=False):
         self.paths = paths
         self.fn = fn
