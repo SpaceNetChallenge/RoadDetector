@@ -27,8 +27,12 @@ Results:
 
 Top 5 Solutions:
 1. [Albu](https://github.com/SpaceNetChallenge/RoadDetector/blob/tree/albu-solution/)
-2 (Tie). [wleite](https://github.com/SpaceNetChallenge/RoadDetector/blob/tree/cannab-solution/)
-2 (Tie). [pfr](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/pfr-solution)
+
+2. (tie)[cannab](https://github.com/SpaceNetChallenge/RoadDetector/blob/tree/cannab-solution/)
+
+3. (Tie)[pfr](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/pfr-solution)
+
 4.  [selim_sef](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/selim_sef-solution)
+
 5.  [fabastani](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/fabastani-solution)
 
