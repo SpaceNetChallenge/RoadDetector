@@ -26,9 +26,9 @@ Results:
 
 
 Top 5 Solutions:
-1. [Albu](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/1-XD_XD)
-2. [wleite](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/2-wleite)
-3. [nofto](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/3-nofto)
+1. [Albu](https://github.com/SpaceNetChallenge/RoadDetector/blob/tree/albu-solution/)
+2 (Tie). [wleite](https://github.com/SpaceNetChallenge/RoadDetector/blob/tree/cannab-solution/)
+2 (Tie). [pfr](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/pfr-solution)
+4.  [selim_sef](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/selim_sef-solution)
+5.  [fabastani](https://github.com/SpaceNetChallenge/BuildingDetectors_Round2/tree/master/fabastani-solution)
 
-
-For round 1 results please see the [Round 1 Repository](https://github.com/SpaceNetChallenge/BuildingDetectors)
