@@ -12,11 +12,6 @@ Tell us a bit about yourself, and why you have decided to participate in the con
 
 ●● Handle: cannab
 
-●● Placement you achieved in the MM: 3rd
-
-●● About you: I'm independent Software Developer/Data Scientist interested in hard algorithmic challenges and machine learning
-
-●● Why you participated in the MM: I prefer to learn on practice and challenges like this one is a very good opportunity to learn something new
 
 2.** Solution Development**
 How did you solve the problem? What approaches did you try and what choices did you make, and why? Also, what alternative approaches did you consider?

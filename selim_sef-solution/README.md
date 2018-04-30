@@ -10,9 +10,6 @@ Tell us a bit about yourself, and why you have decided to participate in the con
 
 - Name: Selim Seferbekov
 - Handle: selim\_sef
-- Placement you achieved in the MM:
-- About you: During the day I&#39;m a software developer. I&#39;m working on data processing applications mostly using Java, Apache Spark and AWS.  About a year ago I started participating in machine learning challenges. Quickly I became interested in Deep Learning for Computer Vision tasks. Which recently has become my main hobby.
-- Why you participated in the MM: 1. quite challenging task 2. open source dataset 3. to apply the skills obtained at previous competitions and to try different network architectures
 
 **2.** **Solution Development**
 
