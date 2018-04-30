@@ -63,7 +63,8 @@ Please specify the name of the open source resource along with a URL to where it
 
 5.** Potential Algorithm Improvements**
 Please specify any potential improvements that can be made to the algorithm:
-
+ls
+llll
 ●● Improve data quality: there are some bugs when road masks on missing image data, also when tiles cut along the road, etc.
 ●● Train Neural Networks longer/harder, find better architectures
 
