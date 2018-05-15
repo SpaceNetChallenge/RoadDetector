@@ -62,7 +62,7 @@ Also some parameters for post-processing where manually found per city using out
 
 ## Open Source Resources, Frameworks and Libraries
 
-Please specify the name of the open source resource along with a URL to where it's housed and it's license type:
+> Please specify the name of the open source resource along with a URL to where it's housed and it's license type:
 
 - Anaconda as base Python 3 environment, www.anaconda.com
 - Tensorflow, www.tensorflow.org Apache License
