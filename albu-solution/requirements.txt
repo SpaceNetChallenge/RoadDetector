@@ -1,5 +1,5 @@
 cython
-numpy==1.13.1
+numpy==1.21.0
 opencv-python
 pyproj
 matplotlib
