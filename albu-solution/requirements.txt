@@ -7,7 +7,7 @@ networkx==1.11
 fiona
 scikit-image==0.13.1
 scikit-learn
-scipy==1.0.0
+scipy==1.10.0
 geopandas
 tqdm
 torchvision
